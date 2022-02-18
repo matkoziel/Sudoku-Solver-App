@@ -2,7 +2,7 @@
  * Representation of sudoku board
  */
 public class SudokuBoard {
-    private int size=9;
+    private int size;
     private int[][] board;
 
     public SudokuBoard(int size, int[][] board) {

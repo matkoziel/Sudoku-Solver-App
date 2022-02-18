@@ -14,7 +14,7 @@ public class SudokuBoardSolver {
         for (int row=0;row<sudokuBoard.getSize();row++){
             for (int column=0;column< sudokuBoard.getSize();column++){      //Iteration through board till empty field
                 if(sudokuBoard.getBoard()[row][column]==0){
-                    for (int number=1;number<=sudokuBoard.getSize();number++){
+                    for (int number=1;number<=9;number++){
                         if (sudokuBoardLogic.isValid(number,row,column)) {  //Find the number that is valid
                             sudokuBoard.set(number,row,column);             //Set the found number
                             if(solve()){
@@ -32,4 +32,7 @@ public class SudokuBoardSolver {
         return true;
     }
 
+    public int[][] getSudokuBoard() {
+        return sudokuBoard.getBoard();
+    }
 }

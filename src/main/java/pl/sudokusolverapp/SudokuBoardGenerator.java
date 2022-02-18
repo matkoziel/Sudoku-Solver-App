@@ -19,13 +19,32 @@ public class SudokuBoardGenerator {
         return output;
     }
 
-    public SudokuBoard generateSudokuBoard(int n){
-        for (int i=0;i<n;i++){
+    private void generateSudokuBoard(){
+        for (int i=0;i<20;i++){
             int[] temp = generateRandomNumbers();
             if(sudokuBoardLogic.isValid(temp[2],temp[0],temp[1]) && sudokuBoard.getBoard()[temp[0]][temp[1]]==0)
                 sudokuBoard.set(temp[2],temp[0],temp[1]);
             else i=i-1;
         }
+        new SudokuBoardSolver(sudokuBoard).solve();
+    }
+
+    public void generateSolvableSudokuBoard(int n){
+        generateSudokuBoard();
+        for (int i=sudokuBoard.getSize()-n;i< sudokuBoard.getSize();i++){
+            Random random = new Random();
+            int row=random.nextInt(sudokuBoard.getSize());
+            int column=random.nextInt(sudokuBoard.getSize());
+            if (sudokuBoard.getBoard()[row][column]!=0) sudokuBoard.set(0,row,column);
+            else i--;
+        }
+    }
+
+    public SudokuBoard getSudokuBoard() {
         return sudokuBoard;
+    }
+
+    public void setSudokuBoard(SudokuBoard sudokuBoard) {
+        this.sudokuBoard = sudokuBoard;
     }
 }
